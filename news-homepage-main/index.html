@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <title>Frontend Mentor | News homepage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <style>
+      @font-face {
+        font-family: "inter";
+        src: url("assets/fonts/Inter.ttf") format("truetype");
+      }
+      body {
+        font-family: inter;
+      }
+    </style>
+  </head>
+  <body class="bg-orange-50">
+    <div class="p-6 sm:p-24 md:p-40">
+      <nav class="flex justify-between">
+        <!-- logo -->
+        <div>
+          <img
+            src="assets/images/logo.svg"
+            alt="logo image"
+            class="cursor-pointer"
+          />
+        </div>
+
+        <!-- right menu -->
+        <ul class="hidden md:flex space-x-8">
+          <li class="text-gray-600 hover:text-orange-400 cursor-pointer">
+            Home
+          </li>
+          <li class="text-gray-600 hover:text-orange-400 cursor-pointer">
+            New
+          </li>
+          <li class="text-gray-600 hover:text-orange-400 cursor-pointer">
+            Popular
+          </li>
+          <li class="text-gray-600 hover:text-orange-400 cursor-pointer">
+            Trending
+          </li>
+        </ul>
+
+        <!-- mobile menu -->
+        <div class="flex md:hidden">
+          <button id="menu_button">
+            <img src="assets/images/icon-menu.svg" alt="menu burger" />
+          </button>
+
+          <!-- menu -->
+          <div class="relative" id="menu">
+            <!-- black overlay -->
+            <div
+              class="fixed z-10 bg-black opacity-60 top-0 right-0 w-full h-full transform translate-x-full"
+              id="overlay"
+            ></div>
+            <div
+              class="fixed z-20 top-0 right-0 w-3/4 bg-orange-50 h-full shadow-lg p-8 md:p-24 transition-all duration-300 transform translate-x-full"
+              id="menu_content"
+            >
+              <button class="float-right" id="close_button">
+                <img src="assets/images/icon-menu-close.svg" alt="" />
+              </button>
+
+              <ul class="my-24 md:my-44 space-y-12">
+                <li
+                  class="text-gray-600 text-2xl hover:text-orange-600 cursor-pointer"
+                >
+                  Home
+                </li>
+                <li
+                  class="text-gray-600 text-2xl hover:text-orange-600 cursor-pointer"
+                >
+                  New
+                </li>
+                <li
+                  class="text-gray-600 text-2xl hover:text-orange-600 cursor-pointer"
+                >
+                  Popular
+                </li>
+                <li
+                  class="text-gray-600 text-2xl hover:text-orange-600 cursor-pointer"
+                >
+                  Trending
+                </li>
+                <li
+                  class="text-gray-600 text-2xl hover:text-orange-600 cursor-pointer"
+                >
+                  Category
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- main section -->
+      <section class="my-24">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="col-span-1 md:col-span-2">
+            <img src="assets/images/image-web-3-desktop.jpg" alt="" />
+            <div class="flex flex-col md:flex-row items-center mt-8">
+              <h1 class="font-extrabold text-6xl">
+                The Bright Future of Web 3.0?
+              </h1>
+
+              <div>
+                <p class="text-gray-600">
+                  We dive into the next evolution of the web that claims to put
+                  the power of platforms back into the hand of people. But is it
+                  really fulfiling its promise?
+                </p>
+                <button
+                  class="font-semibold text-white bg-orange-600 hover:bg-black px-8 py-4 mt-8"
+                >
+                  READ MORE
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="h-full bg-black p-8">
+            <h1 class="text-orange-600 font-semibold text-4xl">New</h1>
+            <!-- content -->
+            <ul class="">
+              <li class="border-b border-gray-600 py-6">
+                <h1
+                  class="text-white hover:text-orange-600 cursor-pointer font-bold text-2xl capitalize"
+                >
+                  Hydrogen Vs Electric Cars
+                </h1>
+                <p class="text-gray-400 text-sm tracking-wider mt-2">
+                  Will hydrogen-fueled cars ever catchup to EVs?
+                </p>
+              </li>
+              <li class="border-b border-gray-600 py-6">
+                <h1
+                  class="text-white hover:text-orange-600 cursor-pointer font-bold text-2xl capitalize"
+                >
+                  The Downside of AI Artistry
+                </h1>
+                <p class="text-gray-400 text-sm tracking-wider mt-2">
+                  What are the possible adverse effects of on-demand AI image
+                  generation?
+                </p>
+              </li>
+              <li class="border-b border-gray-600 py-6">
+                <h1
+                  class="text-white hover:text-orange-600 cursor-pointer font-bold text-2xl capitalize"
+                >
+                  IS VS funding drying up?
+                </h1>
+                <p class="text-gray-400 text-sm tracking-wider mt-2">
+                  Private funding by VC firms down 50% YOY. We take a look at
+                  what that mean?
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- supporting section -->
+      <section class="my-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="flex items-center">
+            <img
+              src="assets/images/image-retro-pcs.jpg"
+              class="w-48"
+              alt="retro pc"
+            />
+            <div class="p-4">
+              <h1 class="font-bold text-gray-400 text-4xl">01</h1>
+
+              <h2
+                class="font-bold text-black text-xl mt-4 hover:text-orange-600 cursor-pointer"
+              >
+                Revivng Retro PCs
+              </h2>
+              <p class="text-sm text-gray-600 mt-4">
+                What happens when old PCs are given modern upgrade?
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center">
+            <img
+              src="assets/images/image-top-laptops.jpg"
+              class="w-48"
+              alt="retro pc"
+            />
+            <div class="p-4">
+              <h1 class="font-bold text-gray-400 text-4xl">02</h1>
+
+              <h2
+                class="font-bold text-black text-xl mt-4 hover:text-orange-600 cursor-pointer"
+              >
+                Top 10 laptops of 2022
+              </h2>
+              <p class="text-sm text-gray-600 mt-4">
+                Our best picks for various needs and budgets.
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center">
+            <img
+              src="assets/images/image-gaming-growth.jpg"
+              class="w-48"
+              alt="retro pc"
+            />
+            <div class="p-4">
+              <h1 class="font-bold text-gray-400 text-4xl">03</h1>
+
+              <h2
+                class="font-bold text-black text-xl mt-4 hover:text-orange-600 cursor-pointer"
+              >
+                The Growth of Gaming
+              </h2>
+              <p class="text-sm text-gray-600 mt-4">
+                How the pandemic has sparked fresh oppurtunities.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      var menuOverlay = document.getElementById("overlay");
+      var menuContent = document.getElementById("menu_content");
+      var menuButton = document.getElementById("menu_button");
+      var closeButton = document.getElementById("close_button");
+
+      menuButton.addEventListener("click", function () {
+        menuContent.classList.remove("translate-x-full");
+        menuContent.classList.add("translate-x-0");
+
+        menuOverlay.classList.remove("translate-x-full");
+        menuOverlay.classList.add("translate-x-0");
+      });
+
+      closeButton.addEventListener("click", function () {
+        menuContent.classList.remove("translate-x-0");
+        menuContent.classList.add("translate-x-full");
+
+        menuOverlay.classList.remove("translate-x-0");
+        menuOverlay.classList.add("translate-x-full");
+      });
+
+      menuOverlay.addEventListener("click", function () {
+        menuContent.classList.remove("translate-x-0");
+        menuContent.classList.add("translate-x-full");
+
+        menuOverlay.classList.remove("translate-x-0");
+        menuOverlay.classList.add("translate-x-full");
+      });
+    </script>
+  </body>
+</html>
