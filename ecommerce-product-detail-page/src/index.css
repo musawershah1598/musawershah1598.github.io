@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Kumbh Sans", sans-serif;
+  margin: 0 auto;
+}
+
+@layer components {
+  .text-primary {
+    @apply text-orange-600;
+  }
+  .bg-primary {
+    @apply bg-orange-600;
+  }
+  .border-primary {
+    @apply border-orange-600;
+  }
+}
