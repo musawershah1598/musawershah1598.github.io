@@ -16,7 +16,7 @@ const Navbar = () => {
         {/* mobile menu */}
         <div className="flex md:hidden mr-4 relative">
           <button onClick={() => setShowMobileMenu(!showMobileMenu)}>
-            <img src="/images/icon-menu.svg" alt="menu icon" />
+            <img src="./images/icon-menu.svg" alt="menu icon" />
           </button>
 
           {/* main menu */}
@@ -45,7 +45,7 @@ const Navbar = () => {
           </div>
         </div>
         <img
-          src="/images/logo.svg"
+          src="./images/logo.svg"
           alt="logo image"
           className="cursor-pointer"
         />
@@ -78,7 +78,7 @@ const Navbar = () => {
                 {cart.length}
               </span>
             )}
-            <img src="/images/icon-cart.svg" alt="cart icon" />
+            <img src="./images/icon-cart.svg" alt="cart icon" />
           </button>
 
           {/* cart menu */}
@@ -90,7 +90,7 @@ const Navbar = () => {
         </div>
         <button>
           <img
-            src="/images/image-avatar.png"
+            src="./images/image-avatar.png"
             alt="profile image"
             className="w-16 h-16 border-4 border-primary rounded-full"
           />

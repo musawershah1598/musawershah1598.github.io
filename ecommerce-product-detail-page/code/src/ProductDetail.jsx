@@ -19,7 +19,7 @@ const ProductDetail = ({ product }) => {
       <div className="flex flex-col md:flex-row space-x-6 md:space-x-24 mx-2 md:mx-8">
         <div className="flex-1">
           <img
-            src="/images/image-product-1.jpg"
+            src="./images/image-product-1.jpg"
             alt="images"
             className="h-96 w-full md:w-[30vw] md:h-[30vw] rounded-xl object-cover"
           />

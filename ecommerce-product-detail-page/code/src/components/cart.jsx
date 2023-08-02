@@ -18,7 +18,7 @@ const ShoppingCart = ({ showCart, cart, removeItem }) => {
               key={item.id}
             >
               <img
-                src="/images/image-product-1-thumbnail.jpg"
+                src="./images/image-product-1-thumbnail.jpg"
                 alt="img"
                 className="w-16 h-16 rounded-lg object-cover"
               />
@@ -40,7 +40,7 @@ const ShoppingCart = ({ showCart, cart, removeItem }) => {
               </div>
 
               <button onClick={() => removeItem(item.id)}>
-                <img src="/images/icon-delete.svg" alt="delete icon" />
+                <img src="./images/icon-delete.svg" alt="delete icon" />
               </button>
             </div>
           );
