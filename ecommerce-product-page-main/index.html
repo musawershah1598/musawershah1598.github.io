@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | E-commerce product page</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+  </head>
+  <body>
+    <div class="mx-6 lg:mx-44 my-2 lg:my-24" x-data="main_data">
+      <!-- alert section -->
+      <div class="alert fixed top-12 right-8 z-50">
+        <template x-for="item in alerts">
+          <div
+            class="alert-item px-4 py-6 shadow-lg text-white rounded my-3"
+            :class="[(item.type == 'error' ? 'bg-red-600':''),(item.type== 'success' ? 'bg-green-600': ''),(item.type == 'info' ? 'bg-blue-300': '')]"
+            x-text="item.title"
+          ></div>
+        </template>
+      </div>
+      <!-- navbar -->
+      <nav class="flex justify-between border-b">
+        <div class="flex items-center">
+          <div class="flex lg:hidden mr-4 relative">
+            <button @click="showMobileMenu = !showMobileMenu">
+              <img src="./images/icon-menu.svg" alt="menu icon" />
+            </button>
+
+            <div
+              class="absolute top-8 bg-white shadow-xl p-4 min-w-[16rem]"
+              x-show="showMobileMenu"
+              x-transition.duration.1000ms
+              @click.outside="showMobileMenu = false"
+            >
+              <ul>
+                <li
+                  class="py-4 px-2 hover:bg-gray-100 cursor-pointer rounded-lg"
+                >
+                  Collections
+                </li>
+                <li
+                  class="py-4 px-2 hover:bg-gray-100 cursor-pointer rounded-lg"
+                >
+                  Men
+                </li>
+                <li
+                  class="py-4 px-2 hover:bg-gray-100 cursor-pointer rounded-lg"
+                >
+                  Women
+                </li>
+                <li
+                  class="py-4 px-2 hover:bg-gray-100 cursor-pointer rounded-lg"
+                >
+                  About
+                </li>
+                <li
+                  class="py-4 px-2 hover:bg-gray-100 cursor-pointer rounded-lg"
+                >
+                  Contact
+                </li>
+              </ul>
+            </div>
+          </div>
+          <img
+            src="./images/logo.svg"
+            alt="logo image"
+            class="cursor-pointer"
+          />
+
+          <ul class="ml-16 hidden lg:flex space-x-10 h-full">
+            <li
+              class="h-full flex items-center hover:text-orange-600 cursor-pointer hover:border-b-4 hover:border-orange-600"
+            >
+              Collections
+            </li>
+            <li
+              class="h-full flex items-center hover:text-orange-600 cursor-pointer hover:border-b-4 hover:border-orange-600"
+            >
+              Men
+            </li>
+            <li
+              class="h-full flex items-center hover:text-orange-600 cursor-pointer hover:border-b-4 hover:border-orange-600"
+            >
+              Women
+            </li>
+            <li
+              class="h-full flex items-center hover:text-orange-600 cursor-pointer hover:border-b-4 hover:border-orange-600"
+            >
+              About
+            </li>
+            <li
+              class="h-full flex items-center hover:text-orange-600 cursor-pointer hover:border-b-4 hover:border-orange-600"
+            >
+              Contact
+            </li>
+          </ul>
+        </div>
+
+        <div class="flex items-center space-x-8 my-2 lg:my-6">
+          <div class="relative">
+            <button @click="showCart = !showCart">
+              <template x-if="cart.length > 0">
+                <span
+                  class="absolute bottom-4 left-4 bg-orange-600 px-2 py-1 rounded-full text-xs text-white"
+                  x-text="cart.length"
+                >
+                </span>
+              </template>
+
+              <img src="./images/icon-cart.svg" alt="cart icon" />
+            </button>
+
+            <div
+              class="fixed lg:absolute top-20 lg:top-6 right-0 py-4 w-full lg:w-96 shadow-xl rounded-lg bg-white"
+              x-show="showCart"
+              x-transition.duration.1000ms
+              @click.outside="showCart = false"
+            >
+              <h1 class="font-bold text-lg px-4 py-2">Cart</h1>
+              <hr />
+
+              <div class="py-2 px-4">
+                <template x-if="cart.length <= 0">
+                  <p class="my-2">There are no items in the cart right now.</p>
+                </template>
+                <template x-for="item in cart">
+                  <div class="flex space-x-4 items-center justify-evenly">
+                    <img
+                      src="./images/image-product-1-thumbnail.jpg"
+                      alt="img"
+                      class="w-16 h-16 rounded-lg object-cover"
+                    />
+
+                    <div>
+                      <p
+                        class="text-gray-500 tracking-wider"
+                        x-text="item.title"
+                      ></p>
+
+                      <div class="flex">
+                        <p class="text-gray-500 space-x-2">
+                          <span x-text="item.price"></span>
+                          <span>x</span>
+                          <span x-text="item.quantity"></span>
+                        </p>
+
+                        <p
+                          class="ml-4 font-bold"
+                          x-text="'$' + item.price * item.quantity"
+                        ></p>
+                      </div>
+                    </div>
+
+                    <button @click="deleteItemFromCart(item.id)">
+                      <img src="./images/icon-delete.svg" alt="delete icon" />
+                    </button>
+                  </div>
+                </template>
+
+                <button
+                  class="bg-orange-600 w-full mt-4 py-4 rounded-lg text-white hover:bg-orange-400"
+                >
+                  Checkout
+                </button>
+              </div>
+            </div>
+          </div>
+          <button>
+            <img
+              src="./images/image-avatar.png"
+              alt="profile image"
+              class="w-16 h-16 border-4 border-orange-600 rounded-full"
+            />
+          </button>
+        </div>
+      </nav>
+
+      <!-- main content -->
+      <main class="my-24">
+        <div
+          class="flex flex-col md:flex-row space-x-6 md:space-x-24 mx-2 md:mx-8"
+        >
+          <div class="flex-1">
+            <img
+              src="./images/image-product-1.jpg"
+              alt="images"
+              class="h-96 w-full lg:w-[30vw] lg:h-[30vw] rounded-xl object-cover"
+            />
+          </div>
+
+          <div class="flex-1 my-12 md:my-2">
+            <p
+              class="text-orange-600 font-semibold tracking-wider"
+              x-text="product.category.title"
+            ></p>
+
+            <h1 class="text-5xl mt-4 font-bold" x-text="product.title"></h1>
+
+            <p
+              class="mt-8 text-gray-400 text-xl"
+              x-text="product.description"
+            ></p>
+
+            <div class="mt-4">
+              <div class="flex items-center space-x-8">
+                <p
+                  class="text-4xl font-bold"
+                  x-text="product.sale > 0
+                  ? product.price - (product.price * product.sale) / 100
+                  : product.price"
+                ></p>
+                <p
+                  class="p-2 bg-orange-100 rounded-lg text-orange-600 font-bold"
+                  x-show="product.sale > 0"
+                  x-text="product.sale + '%'"
+                ></p>
+              </div>
+
+              <p
+                class="text-gray-400 line-through font-semibold"
+                x-text="product.price.toFixed(2)"
+              ></p>
+            </div>
+
+            <div class="flex mt-4" x-data="quantity">
+              <div class="flex items-center bg-gray-100 rounded-xl shadow-lg">
+                <p
+                  class="py-2 px-4 cursor-pointer hover:bg-gray-200 rounded-xl font-bold hover:text-orange-600 text-2xl"
+                  @click="decrement"
+                >
+                  -
+                </p>
+                <p
+                  class="py-2 px-4 cursor-pointer hover:bg-gray-200 rounded-xl font-bold"
+                  x-text="quantity"
+                ></p>
+                <p
+                  class="py-2 px-4 cursor-pointer hover:bg-gray-200 rounded-xl font-bold hover:text-orange-600 text-2xl"
+                  @click="increment"
+                >
+                  +
+                </p>
+              </div>
+
+              <button
+                class="ml-8 bg-orange-600 text-white font-bold px-8 py-4 rounded-xl w-full hover:bg-orange-400"
+                @click="addToCart({id: 1,title: 'Fall Limited Edition Snickers',price: 250.00,quantity})"
+              >
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      document.addEventListener("alpine:init", () => {
+        Alpine.data("main_data", () => ({
+          alerts: [],
+          cart: [],
+          showCart: false,
+          showMobileMenu: false,
+          product: {
+            title: "Fall Limited Edition Snickers",
+            description:
+              "These low profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they will withstand everything the weather can offer.",
+            category: {
+              title: "Sneaker Company",
+            },
+            price: 250.0,
+            sale: 25,
+          },
+
+          addAlert(title, type = "info") {
+            const id = this.alerts.length + 1;
+            this.alerts.push({ id, title, type });
+            setTimeout(() => {
+              this.alerts = this.alerts.filter((item) => item.id != id);
+            }, 3000);
+          },
+
+          addToCart(item) {
+            const found = this.cart.find((i) => i.id == item.id);
+            if (found) {
+              this.addAlert("Item already present in the cart", "error");
+            } else {
+              this.cart.push(item);
+              this.addAlert("Item added to cart.", "success");
+            }
+          },
+          deleteItemFromCart(id) {
+            this.cart = this.cart.filter((item) => item.id != id);
+            this.addAlert("Item removed from cart", "error");
+          },
+        }));
+        Alpine.data("quantity", () => ({
+          quantity: 1,
+          increment() {
+            this.quantity++;
+          },
+          decrement() {
+            if (this.quantity > 1) {
+              this.quantity--;
+            }
+          },
+        }));
+      });
+    </script>
+  </body>
+</html>
